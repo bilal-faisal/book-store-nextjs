@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 async function getBooks() {
-  let res = await fetch("https://simple-books-api.glitch.me/books");
+  let res = await fetch("https://simple-books-api.glitch.me/books"); 
   return res.json();
 }
 
