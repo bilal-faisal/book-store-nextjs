@@ -8,7 +8,6 @@ async function getAuth(user: string) {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-store",
       body: JSON.stringify(user),
     });
 
@@ -16,7 +15,6 @@ async function getAuth(user: string) {
     console.log(data);
   } catch (error) {
     console.log(error);
-    alert(error);
   }
 }
 
