@@ -18,7 +18,7 @@ const Home = async () => {
   return (
     <>
       <h1 className="mt-8 py-2 text-3xl font-semibold text-center">
-        Book Store
+        BookStore
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-8 gap-8">
         {books.map(({ id, name, type, available }: Book) => {
