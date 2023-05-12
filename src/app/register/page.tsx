@@ -2,19 +2,21 @@
 import React, { useState } from "react";
 
 async function getAuth(user: string) {
-  try {
-    let res = await fetch("https://simple-books-api.glitch.me/api-clients/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+  let res = await fetch("/api/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: user,
+    cache: "no-store",
+  });
 
-    let data = await res.json();
-    console.log(data);
-  } catch (error) {
-    console.log(error);
+  let data = await res.json();
+  console.log(data);
+  if(data.error){
+    console.log("Error")
+  }else{
+    console.log("Success")
   }
 }
 
