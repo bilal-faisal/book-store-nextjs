@@ -1,34 +1,43 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 async function getAuth(user: string) {
-  let res = await fetch("/api/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: user,
-    cache: "no-store",
-  });
+  try {
+    let res = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: user,
+      cache: "no-store",
+    });
 
-  let data = await res.json();
-  console.log(data);
-  if(data.error){
-    console.log("Error")
-  }else{
-    console.log("Success")
+    if (!res.ok) {
+      throw new Error("Something went Wrong!");
+    }
+    return res.json();
+  } catch (error) {
+    return error;
   }
 }
 
 const Register = () => {
+  let router = useRouter();
   const [user, setUser] = useState({ clientName: "", clientEmail: "" });
 
   function handleChange(e: any) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
-    getAuth(JSON.stringify(user));
+    let data = await getAuth(JSON.stringify(user));
+    if (data.error) {
+      alert(data.error);
+    } else {
+      localStorage.setItem("authToken", data.accessToken);
+      router.back();
+    }
   }
   return (
     <>
