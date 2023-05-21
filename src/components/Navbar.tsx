@@ -59,8 +59,13 @@ export default function Navbar() {
           >
             <ul className="items-center justify-center space-y-6 md:flex md:space-x-10 md:space-y-0">
               <li>
+                <Link href={"/login"}>
+                  <button className="bg-white mx-2 px-3 py-1 rounded-md border border-white hover:border hover:border-white hover:bg-gray-800 hover:text-white">
+                    Login
+                  </button>
+                </Link>
                 <Link href={"/register"}>
-                  <button className="bg-white px-3 py-1 rounded-md border border-white hover:border hover:border-white hover:bg-gray-800 hover:text-white">
+                  <button className="bg-white mx-2 px-3 py-1 rounded-md border border-white hover:border hover:border-white hover:bg-gray-800 hover:text-white">
                     Register
                   </button>
                 </Link>
